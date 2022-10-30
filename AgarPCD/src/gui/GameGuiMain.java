@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import game.Game;
 import game.PhoneyHumanPlayer;
+import game.Player;
 
 import javax.swing.JFrame;
 
@@ -41,9 +42,12 @@ public class GameGuiMain implements Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		game.addPlayerToGame(new PhoneyHumanPlayer(1, game, (byte)3));
-		game.addPlayerToGame(new PhoneyHumanPlayer(2, game, (byte)2));
-		game.addPlayerToGame(new PhoneyHumanPlayer(3, game, (byte)1));
+		for(int id = 0; id < Game.NUM_PLAYERS; id++) {
+		    game.addPlayerToGame(new PhoneyHumanPlayer(id, game, (byte)Player.generateInitialEnergy()));
+		}
+//		game.addPlayerToGame(new PhoneyHumanPlayer(1, game, (byte)3));
+//		game.addPlayerToGame(new PhoneyHumanPlayer(2, game, (byte)2));
+//		game.addPlayerToGame(new PhoneyHumanPlayer(3, game, (byte)1));
 	}
 
 	@Override

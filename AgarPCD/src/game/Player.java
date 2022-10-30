@@ -19,9 +19,8 @@ public abstract class Player  {
 	private byte currentStrength;
 	protected byte originalStrength;
 
-	// TODO: get player position from data in game
 	public Cell getCurrentCell() {
-		return null;
+		return game.getCell(this);
 	}
 
 	public Player(int id, Game game, byte strength) {
@@ -36,7 +35,7 @@ public abstract class Player  {
 	
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", currentStrength=" + currentStrength + ", getCurrentCell()=" + getCurrentCell()
+		return "Player [id=" + id + ", currentStrength=" + currentStrength + ", getCurrentCell()=" + getCurrentCell()==null?"":getCurrentCell()
 		+ "]";
 	}
 
@@ -69,5 +68,12 @@ public abstract class Player  {
 
 	public int getIdentification() {
 		return id;
+	}
+	
+	public static int generateInitialEnergy() {
+	    Double r = Math.random();
+	    if(r<0.33) return 1;
+	    else if(r>=0.33 && r<0.66) return 2;
+	    else return 3;
 	}
 }

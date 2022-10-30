@@ -9,7 +9,7 @@ public class Game extends Observable {
 
 	public static final int DIMY = 30;
 	public static final int DIMX = 30;
-	private static final int NUM_PLAYERS = 90;
+	public static final int NUM_PLAYERS = 90;
 	private static final int NUM_FINISHED_PLAYERS_TO_END_GAME=3;
 
 	public static final long REFRESH_INTERVAL = 400;
@@ -41,6 +41,15 @@ public class Game extends Observable {
 
 	public Cell getCell(Coordinate at) {
 		return board[at.x][at.y];
+	}
+	
+	public Cell getCell(Player p) {
+	    for(Cell[] c2: board) {
+		for(Cell c: c2) {
+		    if(c.getPlayer() != null && c.getPlayer().equals(p)) return c;
+		}
+	    }
+	    return null;
 	}
 
 	/**	

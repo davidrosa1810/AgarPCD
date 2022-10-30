@@ -29,7 +29,11 @@ public class Cell {
 
 	// Should not be used like this in the initial state: cell might be occupied, must coordinate this operation
 	public void setPlayer(Player player) {
-		this.player = player;
+	    if(isOcupied()) {
+		System.out.println("Célula já ocupada; posição: " + position + ", jogador1: " + getPlayer().getIdentification() + ", jogador2: " + player.getIdentification());
+		return;
+	    }
+	    this.player = player;
 	}
 	
 	
