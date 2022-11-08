@@ -18,6 +18,8 @@ public abstract class Player  {
 
 	private byte currentStrength;
 	protected byte originalStrength;
+	
+	private Thread thread;
 
 	public Cell getCurrentCell() {
 		return game.getCell(this);
@@ -29,6 +31,14 @@ public abstract class Player  {
 		this.game=game;
 		currentStrength=strength;
 		originalStrength=strength;
+	}
+	
+	public void setThread(Thread t) {
+	    this.thread = t;
+	}
+	
+	public Thread getThread() {
+	    return thread;
 	}
 
 	public abstract boolean isHumanPlayer();

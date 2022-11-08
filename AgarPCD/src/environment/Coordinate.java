@@ -29,4 +29,9 @@ public class Coordinate {
 	public Coordinate translate(Coordinate vector) {
 		return new Coordinate(x+vector.x, y+vector.y);
 	}
+	
+	public boolean outOfBounds() {
+	    if(x >= 30 || y >= 30 || x < 0 || y < 0) return true;
+	    return false;
+	}
 }
