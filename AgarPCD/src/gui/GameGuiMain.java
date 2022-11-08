@@ -8,6 +8,8 @@ import game.Player;
 
 import javax.swing.JFrame;
 
+import environment.Direction;
+
 public class GameGuiMain implements Observer {
 	private JFrame frame = new JFrame("pcd.io");
 	private BoardJComponent boardGui;
@@ -56,6 +58,8 @@ public class GameGuiMain implements Observer {
 	}
 
 	public static void main(String[] args) {
+		for(int i = 0; i < 100;i++ )
+			System.out.println(Direction.values()[(int)(Math.random()*Direction.values().length)]);
 		GameGuiMain game = new GameGuiMain();
 		game.init();
 	}
