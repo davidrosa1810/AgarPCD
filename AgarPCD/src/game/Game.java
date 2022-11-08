@@ -1,6 +1,7 @@
 package game;
 
 
+import java.util.HashMap;
 import java.util.Observable;
 import environment.Cell;
 import environment.Coordinate;
@@ -16,6 +17,7 @@ public class Game extends Observable {
 	public static final double MAX_INITIAL_STRENGTH = 3;
 	public static final long MAX_WAITING_TIME_FOR_MOVE = 2000;
 	public static final long INITIAL_WAITING_TIME = 10000;
+	
 
 	protected Cell[][] board;
 
@@ -29,10 +31,12 @@ public class Game extends Observable {
 	
 	/** 
 	 * @param player 
+	 * @throws InterruptedException 
 	 */
-	public void addPlayerToGame(Player player) {
+	public void addPlayerToGame(Player player) throws InterruptedException {
 		Cell initialPos=getRandomCell();
 		initialPos.setPlayer(player);
+
 		
 		// To update GUI
 		notifyChange();

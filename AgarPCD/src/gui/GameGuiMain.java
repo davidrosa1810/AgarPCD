@@ -1,7 +1,10 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import game.AutomaticPlayer;
 import game.Game;
 import game.PhoneyHumanPlayer;
 import game.Player;
@@ -28,7 +31,6 @@ public class GameGuiMain implements Observer {
 		boardGui = new BoardJComponent(game);
 		frame.add(boardGui);
 
-
 		frame.setSize(800,800);
 		frame.setLocation(0, 150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,6 +38,8 @@ public class GameGuiMain implements Observer {
 
 	public void init()  {
 		frame.setVisible(true);
+		
+		ArrayList<Thread> automaticPlayers = new ArrayList<>();
 
 		// Demo players, should be deleted
 		try {
@@ -45,7 +49,14 @@ public class GameGuiMain implements Observer {
 			e.printStackTrace();
 		}
 		for(int id = 0; id < Game.NUM_PLAYERS; id++) {
-		    game.addPlayerToGame(new PhoneyHumanPlayer(id, game, (byte)Player.generateInitialEnergy()));
+		    AutomaticPlayer a = new AutomaticPlayer(id, game, (byte)Player.generateInitialEnergy());
+		    Thread t = new Thread(a);
+		    automaticPlayers.add(t);
+		    a.setThread(t);
+		    //game.addPlayerToGame(a);
+		}
+		for(Thread t: automaticPlayers) {
+		    t.start();
 		}
 //		game.addPlayerToGame(new PhoneyHumanPlayer(1, game, (byte)3));
 //		game.addPlayerToGame(new PhoneyHumanPlayer(2, game, (byte)2));
